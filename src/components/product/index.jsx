@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { fetchProducts } from "../api";
+import { useDispatch } from "react-redux";
+import { add } from "../../store/cartSlice";
 
 const Product = () => {
+  const dispatch = useDispatch();
   const [products, setproducts] = useState([]);
   useEffect(() => {
     const fetchProductsData = async () => {
@@ -17,6 +20,11 @@ const Product = () => {
 
     fetchProductsData();
   }, []);
+
+  const addProducts = (product) => {
+    dispatch(add(product));
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
       {products.map((product) => {
@@ -97,6 +105,7 @@ const Product = () => {
                 <button
                   href="#"
                   className="flex items-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  onClick={() => addProducts(product)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
