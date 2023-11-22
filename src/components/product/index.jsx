@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { fetchProducts } from "../../store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/cartSlice";
-
+import { STATUS } from "../../store/productSlice";
 const Product = () => {
   const dispatch = useDispatch();
   const { data: products, status } = useSelector((state) => state.product);
@@ -26,7 +26,12 @@ const Product = () => {
   const addProducts = (product) => {
     dispatch(add(product));
   };
-
+  if (status === STATUS.LOADING) {
+    return <h2>Loading</h2>;
+  }
+  if (status === STATUS.ERROR) {
+    return <h2>SomeThing Went Wrong!</h2>;
+  }
   const renderStarRating = (rating) => {
     const numberOfStars = 5;
     const filledStars = Math.floor(rating);
