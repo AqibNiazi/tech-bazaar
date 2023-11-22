@@ -1,10 +1,10 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-export const STATUS = {
+export const STATUS = Object.freeze({
   IDLE: "idle",
   ERROR: "error",
   LOADING: "loading",
-};
+});
 const productSlice = createSlice({
   name: "product",
   initialState: {
