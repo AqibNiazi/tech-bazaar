@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { fetchProducts } from "../api";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { fetchProducts } from "../../store/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/cartSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
-  const [products, setproducts] = useState([]);
+  const { data: products, status } = useSelector((state) => state.product);
+  // const [products, setproducts] = useState([]);
   useEffect(() => {
-    const fetchProductsData = async () => {
-      try {
-        const response = await fetchProducts();
-        setproducts(response.data);
-        console.log(response.data);
-      } catch (error) {
-        // Handle error if the fetch fails
-        console.error("Error fetching products:", error);
-      }
-    };
+    dispatch(fetchProducts());
+    // const fetchProductsData = async () => {
+    //   try {
+    //     const response = await fetchProducts();
+    //     setproducts(response.data);
+    //     console.log(response.data);
+    //   } catch (error) {
+    //     // Handle error if the fetch fails
+    //     console.error("Error fetching products:", error);
+    //   }
+    // };
 
-    fetchProductsData();
+    // fetchProductsData();
   }, []);
 
   const addProducts = (product) => {
