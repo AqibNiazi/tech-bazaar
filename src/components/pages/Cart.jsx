@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import {
   remove,
   increaseProductQuantity,
@@ -10,8 +11,9 @@ const Cart = () => {
   const shippingCost = 10; // Define the shipping cost here or dynamically from a variable
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart);
-  const removeProduct = (productId) => {
+  const removeProduct = (productId, ProductTitle) => {
     dispatch(remove(productId));
+    toast.success(`${ProductTitle} Removed from the cart`);
   };
   const calculateTotalPrice = () => {
     let totalPrice = 0;
@@ -84,7 +86,7 @@ const Cart = () => {
                     {product?.category}
                   </span>
                   <button
-                    onClick={() => removeProduct(product.id)}
+                    onClick={() => removeProduct(product.id, product.title)}
                     className="font-semibold hover:text-red-500 text-gray-500 text-xs text-left"
                   >
                     Remove

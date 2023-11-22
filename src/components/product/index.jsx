@@ -3,8 +3,11 @@ import { fetchProducts } from "../../store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../store/cartSlice";
 import { STATUS } from "../../store/productSlice";
+import toast from "react-hot-toast";
+import PulseLoader from "react-spinners/PulseLoader";
 const Product = () => {
   const dispatch = useDispatch();
+  const cartItem = useSelector((state) => state.cart);
   const { data: products, status } = useSelector((state) => state.product);
   // const [products, setproducts] = useState([]);
   useEffect(() => {
@@ -25,9 +28,19 @@ const Product = () => {
 
   const addProducts = (product) => {
     dispatch(add(product));
+    toast.success(`${cartItem.length + 1} item is added to cart`);
   };
   if (status === STATUS.LOADING) {
-    return <h2>Loading</h2>;
+    return (
+      <div className="flex justify-center items-center">
+        <PulseLoader
+          color="rgba(54, 215, 183, 1)"
+          loading
+          size={25}
+          speedMultiplier={0.7}
+        />
+      </div>
+    );
   }
   if (status === STATUS.ERROR) {
     return <h2>SomeThing Went Wrong!</h2>;
