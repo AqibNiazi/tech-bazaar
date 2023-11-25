@@ -4,48 +4,50 @@
 
 
 .pagination {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5rem;
-    font-size: 1.2rem;
-    gap: 5px;
-  }
-  
-  .pagination .page-num,
-  .pagination .next,
-  .pagination .previous {
-    padding: 8px 12px; /* Adjust as needed */
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: 400;
-    border: 1px solid #00CCFF;
-    color: black;
-    background-color: white;
-    text-decoration: none;
-    display: inline-block;
-  }
-  
-  .pagination .next,
-  .pagination .previous {
-    font-size: 1.3rem; /* Slightly bigger labels for next and previous buttons */
-  }
-  
-  .pagination .page-num:hover,
-  .pagination .next:hover,
-  .pagination .previous:hover {
-    background-color: #00CCFF;
-    color: white;
-  }
-  
-  .pagination .active {
-    background-color: #00CCFF;
-    color: white;
-  }
-  
-  .pagination .disabled {
-    pointer-events: none;
-    opacity: 0.5; /* Adjust opacity or other styles to visually show it's disabled */
-    /* Add any other styles for disabled buttons */
-  }
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  gap: 5px;
+}
+
+.pagination .page-num,
+.pagination .next,
+.pagination .previous {
+  padding: 8px 12px; /* Adjust as needed */
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 400;
+  border: 1px solid #00CCFF;
+  color: black;
+  /* background-color: white;  */
+  text-decoration: none;
+  display: inline-block;
+}
+
+.pagination .next,
+.pagination .previous {
+  font-size: 1.3rem; /* Slightly bigger labels for next and previous buttons */
+}
+
+.pagination .page-num:hover,
+.pagination .next:hover,
+.pagination .previous:hover {
+  background-color: #00CCFF;
+  color: white;
+}
+
+.pagination .active > a {
+  background-color: #00CCFF; /* Active link background color */
+  color: white !important; /* Active link text color with !important */
+  border-radius: 4px;
+  /* Add any other styles for the active page */
+}
+
+.pagination .disabled {
+  pointer-events: none;
+  opacity: 0.5; /* Adjust opacity or other styles to visually show it's disabled */
+  /* Add any other styles for disabled buttons */
+}
