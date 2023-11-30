@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layout";
-import Home from "../pages/Home";
-import Cart from "../pages/Cart";
+import { Home, Cart, Products, Product } from "../pages";
 
 const AppRoutes = () => {
   return (
@@ -10,8 +9,10 @@ const AppRoutes = () => {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Home />} />
-
           <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<Product />} />
         </Route>
       </Routes>
     </BrowserRouter>
