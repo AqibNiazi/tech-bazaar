@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { fetchProducts } from "../api";
 import { Link } from "react-router-dom";
+
+
 const Products = () => {
   const {
     isLoading,
@@ -12,6 +14,7 @@ const Products = () => {
     queryFn: fetchProducts,
     staleTime: 10000,
   });
+
   if (isLoading) {
     return <h2>Loading...</h2>;
   }
@@ -38,7 +41,7 @@ const Products = () => {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <Link to={""}>
+                    <Link to={`/products/${product.id}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.title}
                     </Link>

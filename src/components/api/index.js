@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchProducts = async () => {
+const fetchProducts = async () => {
   try {
     const response = await axios.get("https://dummyjson.com/products");
     const data = await response.data;
@@ -9,3 +9,4 @@ export const fetchProducts = async () => {
     throw new Error("Failed to fetch products");
   }
 };
+export { fetchProducts };
