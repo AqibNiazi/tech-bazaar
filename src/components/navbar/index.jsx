@@ -1,9 +1,18 @@
-import React from "react";
+import React,{useState} from "react";
 import redux_icon from "../../assets/redux-icon.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Navbar = () => {
+  const [darkMode, setDarkMode] = useState(false); // State for dark mode
   const items = useSelector((state) => state.cart);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    // You can implement logic here to toggle your dark mode styles
+    // For Tailwind CSS, you may conditionally apply the 'dark' class to your elements
+    // Example: document.documentElement.classList.toggle('dark');
+    document.documentElement.classList.toggle('dark', darkMode);
+  };
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -67,11 +76,32 @@ const Navbar = () => {
                 Products
               </Link>
             </li>
-
+            <li className="hidden md:flex items-center">
+        
+          <label htmlFor="darkModeToggle" className="flex items-center cursor-pointer">
+            <span className="mr-2 dark:text-white">{darkMode?"Light":"Dark"} Mode</span>
+            <div className="relative">
+              <input
+                type="checkbox"
+                id="darkModeToggle"
+                className="sr-only"
+                checked={darkMode}
+                onChange={toggleDarkMode}
+              />
+              <div className="w-8 h-4 bg-gray-400 rounded-full dark:bg-gray-700"></div>
+              <div className={`absolute w-4 h-4 bg-white rounded-full shadow inset-y-0 left-0 ${darkMode ? 'transform translate-x-full' : ''} transition-transform duration-300 ease-in-out`}></div>
+            </div>
+          </label>
+        </li>
+  
             <li className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-color md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
               CartItems : {items.length}
             </li>
           </ul>
+                  
+        
+  
+
         </div>
       </div>
     </nav>
