@@ -6,6 +6,7 @@ import { STATUS } from "../../store/productSlice";
 import toast from "react-hot-toast";
 import PulseLoader from "react-spinners/PulseLoader";
 import ReactPaginate from "react-paginate";
+import offline_image from "../../assets/offline_image.jpg"; 
 const Product = () => {
   const { data: products, status } = useSelector((state) => state.product);
   const [currentItems, setCurrentItems] = useState([]);
@@ -61,7 +62,9 @@ const Product = () => {
     );
   }
   if (status === STATUS.ERROR) {
-    return <h2>SomeThing Went Wrong!</h2>;
+    return <div className="w-64 flex justify-center items-center mx-auto">
+<img src={offline_image} alt="offline"/>
+    </div> ;
   }
 
   return (
