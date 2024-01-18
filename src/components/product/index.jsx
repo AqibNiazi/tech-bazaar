@@ -69,7 +69,7 @@ const Product = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {currentItems.map((product) => {
           return (
             <div
@@ -182,11 +182,11 @@ const Product = () => {
         previousLabel=" < "
         renderOnZeroPageCount={null}
         containerClassName="pagination"
-        pageLinkClassName="page-num"
-        previousClassName={`page-num ${disablePrevious ? "disabled" : ""}`}
+        pageLinkClassName="page-num text-black dark:text-white"
+        previousClassName={`page-num text-black dark:text-white ${disablePrevious ? "disabled" : ""}`}
         disabledClassName="disabled"
         activeClassName="active"
-        nextClassName={`next ${disableNext ? "disabled" : ""}`}
+        nextClassName={`next text-black dark:text-white ${disableNext ? "disabled" : ""}`}
       />
     </>
   );

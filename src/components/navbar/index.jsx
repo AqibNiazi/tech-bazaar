@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 import ListItems from "./ListItems";
 const Navbar = () => {
-  const [darkMode, setDarkMode] = useState(false); // State for dark mode
+  const [darkMode, setDarkMode] = useState(true); // State for dark mode
   const items = useSelector((state) => state.cart);
 
   const toggleDarkMode = () => {
