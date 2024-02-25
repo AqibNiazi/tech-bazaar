@@ -11,6 +11,7 @@ const Cart = () => {
   const shippingCost = 10; // Define the shipping cost here or dynamically from a variable
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart);
+  console.log("Products in cart",products);
   const removeProduct = (productId, ProductTitle) => {
     dispatch(remove(productId));
     toast.success(`${ProductTitle} Removed from the cart`);
@@ -73,10 +74,8 @@ const Cart = () => {
             </h3>
           </div>
           {products.map((product) => (
-            <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+            <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" key={product?.id}>
               <div className="flex w-2/5">
-                {" "}
-                {/* product */}
                 <div className="w-20">
                   <img className="h-24" src={product.image} alt="" />
                 </div>

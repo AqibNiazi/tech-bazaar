@@ -12,8 +12,6 @@ const Product = () => {
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
-  // Calculate whether to disable previous and next buttons
-
   let itemsPerPage = 8;
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart);
@@ -28,21 +26,8 @@ const Product = () => {
     const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
   };
-  // const [products, setproducts] = useState([]);
   useEffect(() => {
     dispatch(fetchProducts());
-    // const fetchProductsData = async () => {
-    //   try {
-    //     const response = await fetchProducts();
-    //     setproducts(response.data);
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     // Handle error if the fetch fails
-    //     console.error("Error fetching products:", error);
-    //   }
-    // };
-
-    // fetchProductsData();
   }, []);
 
   const addProducts = (product) => {
@@ -70,11 +55,11 @@ const Product = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {currentItems.map((product) => {
+        {currentItems?.map((product) => {
           return (
             <div
               className="mx-auto relative m-10 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md shadow-gray-400 "
-              key={product.key}
+              key={product?.id}
             >
               <img
                 className="mx-auto h-60 rounded-t-lg object-cover"
