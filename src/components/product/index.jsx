@@ -7,8 +7,11 @@ import toast from "react-hot-toast";
 import PulseLoader from "react-spinners/PulseLoader";
 import ReactPaginate from "react-paginate";
 import offline_image from "../../assets/offline_image.jpg"; 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 const Product = () => {
-  const { data: products, status } = useSelector((state) => state.product);
+  const { data: products, status } = useSelector((state) => state?.product);
+  console.log("Products",products);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -48,24 +51,25 @@ const Product = () => {
   }
   if (status === STATUS.ERROR) {
     return <div className="w-64 flex justify-center items-center mx-auto">
-<img src={offline_image} alt="offline"/>
+<LazyLoadImage src={offline_image} alt="offline"/>
     </div> ;
   }
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {currentItems?.map((product) => {
           return (
             <div
               className="mx-auto relative m-10 w-full max-w-xs overflow-hidden rounded-lg bg-white shadow-md shadow-gray-400 "
               key={product?.id}
             >
-              <img
+              <LazyLoadImage
                 className="mx-auto h-60 rounded-t-lg object-cover"
                 src={product?.image}
                 alt="product image"
-                title={product.description}
+                // scrollPosition={window.innerHeight * 2} // Adjust the multiplier as needed
+                title={product?.description}
               />
 
               <span className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm text-white">
@@ -73,7 +77,7 @@ const Product = () => {
               </span>
               <div className="mt-4 px-5 pb-5">
                 <h5 className="text-xl font-semibold tracking-tight text-slate-900">
-                  {product.title}
+                {product?.title?.length > 25 ? `${product?.title?.substring(0, 25)}...` : product?.title}
                 </h5>
 
                 <div className="mt-2.5 mb-5 flex items-center">

@@ -2,8 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { fetchProducts } from "../api";
 import { Link } from "react-router-dom";
-
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const Products = () => {
   const {
     isLoading,
@@ -32,9 +31,9 @@ const Products = () => {
           {products?.map((product) => (
             <div key={product.id} className="group relative">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
+                <LazyLoadImage
+                  src={product?.thumbnail}
+                  alt={product?.title}
                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                 />
               </div>
