@@ -1,8 +1,6 @@
-import React,{useState} from "react";
-import redux_icon from "../../assets/redux-icon.png";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 
 import ListItems from "./ListItems";
 const Navbar = () => {
@@ -20,12 +18,11 @@ const Navbar = () => {
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
-          to="https://redux-toolkit.js.org/"
+          to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <img src={redux_icon} className="h-8" alt="Redux Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-color dark:text-white">
-            Redux-Toolkit
+            TechBazaar
           </span>
         </Link>
         <button
