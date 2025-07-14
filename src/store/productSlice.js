@@ -22,14 +22,14 @@ const productSlice = createSlice({
   //I have create Extra Reducers for createAsyncThunk function to handle this type of functionality.
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProducts.pending, (state, action) => {
+      .addCase(fetchProducts.pending, (state) => {
         state.status = STATUS.LOADING;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.data = action.payload;
         state.status = STATUS.IDLE;
       })
-      .addCase(fetchProducts.rejected, (state, action) => {
+      .addCase(fetchProducts.rejected, (state) => {
         state.status = STATUS.ERROR;
       });
   },
